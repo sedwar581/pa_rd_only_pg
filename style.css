@@ -1,5 +1,5 @@
 body {
-    padding: 0.2em 2.3em 0.2em 2.3em;
+    padding: 0.2vw 5vw 0.2vw 5vw;
 }
 
 table {}
@@ -33,7 +33,7 @@ tr {}
 
 .paIO {
     font-family: "Raleway";
-    font-size: 1.2em;
+    font-size: 1.0vw;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.99);
     padding: -3px;
