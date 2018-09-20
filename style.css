@@ -1,0 +1,51 @@
+/*
+ * Base structure
+ */
+
+body {
+    padding: 0.2em 2.3em 0.2em 2.3em;
+}
+
+table {}
+
+td {
+    background-color: rgba(82, 79, 79, 0.497);
+    border: 0.7em solid white;
+    padding-top: -3em;
+    padding-bottom: -3em;
+    padding-left: 0.9em;
+    padding-right: 0.9em;
+}
+
+tr {}
+
+.hdsd {
+    font-family: "Oswald";
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    padding: 0em 0.3em 0em 0.13em;
+}
+
+.newSRC {
+    box-shadow: 
+}
+
+.noSRC {
+    opacity: 0.2;
+}
+
+.paIO {
+    font-family: "Raleway";
+    font-size: 1.2em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.99);
+    padding: -3px;
+}
+
+.src {
+    font-family: "Oswald";
+    font-size: 5em;
+    font-weight: bold;
+    color: white;    
+}

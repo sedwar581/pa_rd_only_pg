@@ -1,0 +1,148 @@
+<html>
+  <head>
+    <title>PA Read Only Page</title>
+    <!-- Latest compiled and minified jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Compiled and minified Font Awesome CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Google Fonts API -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald|Raleway">
+    <link rel="stylesheet" href="/style.css">
+
+
+    <!--  https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/  -->
+  </head>
+  <body>
+    <div>
+      <table id="patable">
+        <tbody id="pa_table">
+          <tr>
+            <td id="pa1">
+              <p class="paIO">SRC:<span class="src">VP 537</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 1</span><br>
+                SD OUT:<span class="hdsd">PA 1001</span><br>
+                CLIENT:<span class="hdsd">CNNeE</span>
+              </p>
+            </td>
+            <td id="pa2" class="noSRC">
+              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 2</span><br>
+                SD OUT:<span class="hdsd">PA 1002</span><br>
+                CLIENT:<span class="hdsd">---</span>
+              </p>
+            </td>
+            <td id="pa3">
+                <p class="paIO">SRC:<span class="src">RX 650</span></p>
+                <p class="paIO">
+                  HD OUT:<span class="hdsd">PA 3</span><br>
+                  SD OUT:<span class="hdsd">PA 1003</span><br>
+                  CLIENT:<span class="hdsd">CNN.com</span>
+                </p>
+            </td>
+            <td id="pa4">
+                <p class="paIO">SRC:<span class="src">CM 27</span></p>
+                <p class="paIO">
+                  HD OUT:<span class="hdsd">PA 4</span><br>
+                  SD OUT:<span class="hdsd">PA 1004</span><br>
+                  CLIENT:<span class="hdsd">CNNeE</span>
+                </p>
+            </td>
+          </tr>
+          <tr>
+            <td id="pa8" class="noSRC">
+              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 8</span><br>
+                SD: OUT<span class="hdsd">PA 1008</span><br>
+                CLIENT:<span class="hdsd">---</span>
+              </p>
+            </td>
+            <td id="pa9">
+              <p class="paIO">SRC:<span class="src">PC 812</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 9</span><br>
+                SD OUT:<span class="hdsd">PA 1009</span><br>
+                CLIENT:<span class="hdsd">CNN.com</span>
+              </p>
+            </td>
+            <td id="pa13" class="noSRC">
+              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 13</span><br>
+                SD OUT:<span class="hdsd">PA 1013</span><br>
+                CLIENT:<span class="hdsd">---</span></p>
+            </td>
+            <td id="pa14">
+              <p class="paIO">SRC:<span class="src">VP 538</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 14</span><br>
+                SD OUT:<span class="hdsd">PA 1014</span><br>
+                CLIENT:<span class="hdsd">A-CTRL</span></p>
+            </td>
+          </tr>
+          <tr>
+            <td id="pa15" class="noSRC">
+              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 15</span><br>
+                SD OUT:<span class="hdsd">PA 1015</span><br>
+                CLIENT:<span class="hdsd">---</span>
+              </p>
+            </td>
+            <td id="pa16" class="noSRC">
+              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 16</span><br>
+                SD OUT:<span class="hdsd">PA 1016</span><br>
+                CLIENT:<span class="hdsd">---</span>
+              </p>
+            </td>
+            <td id="pa17">
+              <p class="paIO">SRC:<span class="src">RX 77</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 17</span><br>
+                SD OUT:<span class="hdsd">PA 1017</span><br>
+                CLIENT:<span class="hdsd">B-CTRL</span>
+              </p>
+            </td>
+            <td id="pa18" class="noSRC">
+              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO">
+                HD OUT:<span class="hdsd">PA 18</span><br>
+                SD OUT:<span class="hdsd">PA 1018</span><br>
+                CLIENT:<span class="hdsd">---</span>
+              </p>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+  </body>
+  <script>
+      //Conditional comments to get Ops Engineers to use this only in Chrome
+      //User agent from the browser is grabbed and tested to see if Chrome is in the string, and if it is not, display a JS alert and redirect to Chrome site
+      var agent = navigator.userAgent;
+  
+      var chrome = agent.indexOf("Chrome");
+      var firefox = agent.indexOf("Firefox");
+  
+      var added1 = (chrome + firefox);
+  
+      //console.log(agent + '>>Chrome>>' + chrome + '>>Firefox>>' + firefox);
+      //console.log(added1);
+  
+      if ( added1 === -2 ) {
+          alert("This PA page was designed to work with the Chrome | Firefox Browsers. Please close this page and open it in Chrome | Firefox.");
+          location.href = "http://www.google.com/";
+      }
+  </script>
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src = "https://d3js.org/d3.v5.min.js" charset = "utf-8"></script>
+  <script src = "/pa_data_scripts.js"></script>
+</html>
