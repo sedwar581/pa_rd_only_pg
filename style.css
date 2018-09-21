@@ -1,9 +1,13 @@
 body {
-    padding: 0.2vw 5vw 0.2vw 5vw;
+    padding: 0.1vw 5vw 0.1vw 5vw;
 }
 
 div {
-    padding: 0.2em 4em;
+    padding: 0em 2em 0em 2em;
+}
+
+p {
+    margin: 0;
 }
 
 table {}
@@ -11,11 +15,11 @@ table {}
 td {
     background-color: rgba(82, 79, 79, 0.497);
     border: 0.7em solid white;
-    padding-top: -3em;
-    padding-bottom: -3em;
-    padding-left: 0.9em;
-    padding-right: 0.9em;
-    width: 25%;
+    padding-top: 0.0em;
+    padding-bottom: 0.2em;
+    padding-left: 0.4em;
+    padding-right: 0.2em;
+    width: 19vw;
 }
 
 tr {}
@@ -26,15 +30,13 @@ tr {}
 
 .hdsd {
     font-family: "Oswald";
-    font-size: 1.8em;
+    font-size: 1.9em;
     font-weight: bold;
     color: white;
-    padding: 0em 0.3em 0em 0.13em;
+    margin: 0em 0.3em 0em 0.3em;
 }
 
-.newSRC {
-    box-shadow: ;
-}
+.newSRC {}
 
 .noSRC {
     opacity: 0.2;
@@ -45,12 +47,11 @@ tr {}
     font-size: 1.0vw;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.99);
-    padding: -3px;
 }
 
 .src {
     font-family: "Oswald";
-    font-size: 5em;
+    font-size: 4.8em;
     font-weight: bold;
-    color: white;    
+    color: white; 
 }
