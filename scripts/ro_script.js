@@ -1,13 +1,27 @@
 /* scripts used to affect change on the read only PA page. */
 
-var test_arr = [{"_id":"581fd6e9d566f306883f1acb","panumber":1,"__v":0,"source":"PC 822","client":"H","note":"1pm","initial":"MC","createdAt":"2018-09-20T16:18:57.598Z"},{"_id":"581e7675607a332d46c55972","panumber":2,"__v":0,"source":"VP 535","client":"H","note":"1pm","initial":"MC","createdAt":"2018-09-20T16:20:42.770Z"},{"_id":"581e770e607a332d46c55973","panumber":3,"__v":0,"source":"RX 509","client":"H","note":"? added this to the sheet but no sure when it was put in a PA","initial":"MC","createdAt":"2018-09-20T16:21:39.642Z"},{"_id":"5803be3d743ac42922af2fdb","panumber":4,"__v":0,"initial":"MC","note":"1pm","client":"H","source":"RX 653","createdAt":"2018-09-20T16:22:24.546Z"},{"_id":"5803be41743ac42922af2fdc","panumber":8,"__v":0,"initial":"FT","note":"until 1pm","client":"H control","source":"VP534","createdAt":"2018-09-20T15:45:32.922Z"},{"_id":"5803be46743ac42922af2fdd","panumber":9,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-19T18:06:14.966Z"},{"_id":"5807deaf2dbb8235ef53ec4b","panumber":13,"source":"CM 27","initial":"MC","__v":0,"note":"1pm","client":"H","createdAt":"2018-09-20T16:23:25.904Z"},{"_id":"5803be4c743ac42922af2fde","panumber":14,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-20T10:52:24.802Z"},{"_id":"5803be56743ac42922af2fdf","panumber":15,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-20T01:10:56.359Z"},{"_id":"5803837c121bd41e404f16c8","panumber":16,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-20T01:11:11.238Z"},{"_id":"58038380121bd41e404f16c9","panumber":17,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-15T01:01:25.466Z"},{"_id":"58125f6f7fd6f76522b6aa60","panumber":18,"__v":0,"source":null,"client":null,"note":null,"initial":null,"createdAt":"2018-09-16T09:37:11.993Z"}]
+var add_space_regEx = /\B(?=\d)/;
+var test_arr = [
+    {"_id":"581fd6e9d566f306883f1acb","panumber":13,"__v":0,"source":"PC 822","client":"los angeles","note":"1pm","initial":"MC","createdAt":"2018-09-20T16:18:57.598Z"},
+    {"_id":"58038380121bd41e404f16c9","panumber":2,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-15T01:01:25.466Z"},
+    {"_id":"581e770e607a332d46c55973","panumber":18,"__v":0,"source":"RX 509","client":"H","note":"? added this to the sheet but no sure when it was put in a PA","initial":"MC","createdAt":"2018-09-20T16:21:39.642Z"},
+    {"_id":"5803be3d743ac42922af2fdb","panumber":4,"__v":0,"initial":"MC","note":"1pm","client":"affiliates","source":"RX 653","createdAt":"2018-09-20T16:22:24.546Z"},
+    {"_id":"5803be41743ac42922af2fdc","panumber":8,"__v":0,"initial":"FT","note":"until 1pm","client":"H control","source":"VP534","createdAt":"2018-09-20T15:45:32.922Z"},
+    {"_id":"5803be46743ac42922af2fdd","panumber":9,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-19T18:06:14.966Z"},
+    {"_id":"5807deaf2dbb8235ef53ec4b","panumber":14,"source":"CM 27","initial":"MC","__v":0,"note":"1pm","client":".com","createdAt":"2018-09-20T16:23:25.904Z"},
+    {"_id":"5803be4c743ac42922af2fde","panumber":1,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-20T10:52:24.802Z"},
+    {"_id":"5803be56743ac42922af2fdf","panumber":17,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-20T01:10:56.359Z"},
+    {"_id":"5803837c121bd41e404f16c8","panumber":16,"__v":0,"initial":null,"note":null,"client":null,"source":null,"createdAt":"2018-09-20T01:11:11.238Z"},
+    {"_id":"581e7675607a332d46c55972","panumber":15,"__v":0,"source":"VP 535","client":"satellites","note":"1pm","initial":"MC","createdAt":"2018-09-20T16:20:42.770Z"},
+    {"_id":"58125f6f7fd6f76522b6aa60","panumber":3,"__v":0,"source":null,"client":null,"note":null,"initial":null,"createdAt":"2018-09-16T09:37:11.993Z"}];
 
+    
 function activatePAPanel(panel_id) {    
     /* This function changes the opacity of the corresponding PA panel on the page
        by removing the class of the td element for the PA
        INPUT: panel_id (string)
     */
-    document.getElementById(panel_id).removeAttribute("noSRC");
+    document.getElementById(panel_id).classList.remove("noSRC");
 }
 
 
@@ -114,9 +128,16 @@ function updatePage() {
     test_arr.forEach(function(elem, ind) {
         var src_span = document.querySelector("td[id = pa" + elem.panumber + "] span[class = 'src']");
         var client_span = document.querySelector("td[id = pa" + elem.panumber + "] span[id = 'client']");
-        src_span.innerHTML = (elem.source == null) ? '---' : elem.source;
-        var normal_client = (elem.source == null) ? '---' : normalizeClientString (elem.client);
-        client_span.innerHTML = normal_client;
+
+        if ( elem.source == null ) {
+            src_span.innerHTML = "---";
+            client_span.innerHTML = "---";
+            deactivatePAPanel("pa" + elem.panumber);
+        } else {
+            src_span.innerHTML = elem.source.replace(/[-,\s]/g, '').toUpperCase().replace(add_space_regEx, " ");
+            client_span.innerHTML = normalizeClientString (elem.client);
+            activatePAPanel("pa" + elem.panumber);
+        }
         console.log(src_span);
     });
 }
