@@ -1,0 +1,68 @@
+/* 
+  - Processing Amplifier (PA) Read-Only Page
+  - For use in control rooms of the CNN networks;
+    this file is the CSS for the read only PA page. 
+  - Author: Steven Edwards
+  - Page Started: September 2018
+*/
+
+body {
+    padding: 0.1vw 5vw 0.1vw 5vw;
+    /* background-color: rgba(0, 0, 0, 0.99); */
+}
+
+div {
+    padding: 0em 2em 0em 2em;
+}
+
+p {
+    margin: 0;
+}
+
+table {}
+
+td {
+    background-color: rgba(203, 0, 0, 0.997);
+    border: 0.25em solid white;
+    /* border: 0.25em solid black; */
+    padding-top: 0.0em;
+    padding-bottom: 0.2em;
+    padding-left: 0.4em;
+    padding-right: 0.2em;
+    width: 21vw;
+}
+
+tr {}
+
+#client {
+    font-size: 1.2em;
+}
+
+.hdsd {
+    font-family: "Oswald";
+    font-size: 1.9em;
+    font-weight: bold;
+    color: white;
+    margin-left: 0.5em; 
+}
+
+.newSRC {}
+
+.noSRC {
+    opacity: 0.3;
+    background-color: rgba(86, 87, 89, 0.2);
+}
+
+.paIO {
+    font-family: "Raleway";
+    font-size: 1.0vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.99);
+}
+
+.src {
+    font-family: "Oswald";
+    font-size: 5.3em;
+    font-weight: bold;
+    color: white; 
+}
