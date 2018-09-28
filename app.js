@@ -30,6 +30,12 @@ app.get('/scripts/ro_script.js', function(req, res) {
     }
 );
 
+app.get('/pa_data', function(req, res) {
+    res.type('text/plain');
+    res.sendFile(__dirname + '/quartz_res.txt');
+    }
+);
+
 app.listen(port, function() {
     console.log("My Node.js server is listening for requests for the PA READ-ONLY PAGE on port: " + port);
    }

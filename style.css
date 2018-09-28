@@ -8,11 +8,11 @@
 
 body {
     padding: 0.1vw 5vw 0.1vw 5vw;
-    /* background-color: rgba(0, 0, 0, 0.99); */
+    background-color: rgba(10, 05, 10, 0.99);
 }
 
-div {
-    padding: 0em 2em 0em 2em;
+i {
+    opacity: 0.2;
 }
 
 p {
@@ -22,7 +22,7 @@ p {
 table {}
 
 td {
-    background-color: rgba(203, 0, 0, 0.997);
+    background-color: rgba(0, 173, 0, 0.997);
     border: 0.25em solid white;
     /* border: 0.25em solid black; */
     padding-top: 0.0em;
@@ -38,12 +38,25 @@ tr {}
     font-size: 1.2em;
 }
 
+#mainDiv {
+    padding: 0em 2em 0em 2em;
+}
+
 .hdsd {
     font-family: "Oswald";
     font-size: 1.9em;
     font-weight: bold;
     color: white;
     margin-left: 0.5em; 
+}
+
+.loading-icon {
+    position: absolute;
+    z-index: 1;
+    vertical-align: middle;
+    font-size: 8em;
+    height: 3em;
+    display: none;
 }
 
 .newSRC {}

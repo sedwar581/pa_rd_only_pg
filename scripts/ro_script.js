@@ -19,20 +19,23 @@ function activatePAPanel(panel_id) {
 }
 
 
-function animateNewSrc(panel_id, ending_opct) {
-    console.log(document.getElementById(panel_id));
-    var starting_pos = ending_opct;
+function animateNewSrc(panel_id, ending_opact) {
+    /* This function is used to animate the changing of a table panel's
+       source from one value to another.
+       INPUT: panel_id (string)
+              ending_opact (real number between 0 and 1)
+    */
+    var starting_pos = ending_opact;
     var panel = document.getElementById(panel_id);
-    console.log(panel.style);
     var faded_down = false;
     var int_ID = setInterval(function() {
         if ( starting_pos < 0 ) {
             starting_pos = 0;
             faded_down = true;
-        } else if ( faded_down === true && starting_pos >= 0 && starting_pos < ending_opct ) {
+        } else if ( faded_down === true && starting_pos >= 0 && starting_pos < ending_opact ) {
             starting_pos += 0.1;
             panel.style.opacity = starting_pos;
-        } else if ( faded_down === true && starting_pos > ending_opct ) {
+        } else if ( faded_down === true && starting_pos > ending_opact ) {
             clearInterval(int_ID);
         } else if ( faded_down === false ) {
             starting_pos -= 0.1;
@@ -129,20 +132,26 @@ function getExternalData() {
     setInterval(function() {
         var url = "http://opsvm3.turner.com:3000/api/pas";
         var new_req = new XMLHttpRequest();
-        
+     
         new_req.addEventListener("load", function() {
             var pa_response  = JSON.parse(this.response);
             updatePage(pa_response);
         });
-        //new_req.open('GET', url + ((/\?/).test(url) ? "&" : "?") + (new Date()).getTime());
         new_req.open('GET', url);
         new_req.send();
-        console.log("***** NEW DATA REQUEST *****"); 
+        //console.log("***** NEW DATA REQUEST *****"); 
     }, data_polling_interval);
 }
 
-
 function updatePage(pa_arr) {
+    /* This function reads through the incoming array; tests the destination
+       names i.e. globalName against the list of PAs (PA_list) in order to display
+       the correct name.  The PA names will be the globalName property of the
+       and the source will be the source.globalName property combination
+       of the array's elements
+
+       INPUT: dest_arr (array of objects)
+    */
     pa_arr.forEach(function(elem) {
         var src_span = document.querySelector("td[id = pa" + elem.panumber + "] span[class = 'src']");
         var client_span = document.querySelector("td[id = pa" + elem.panumber + "] span[id = 'client']");
@@ -163,7 +172,7 @@ function updatePage(pa_arr) {
                 src_span.innerHTML = elem.source.replace(/[-,\s]/g, '').toUpperCase().replace(add_space_regEx, " ");
                 client_span.innerHTML = normalizeClientString (elem.client);
                 activatePAPanel("pa" + elem.panumber);
-            }, 1100);
+            }, 1000);
         }
     });
 }
