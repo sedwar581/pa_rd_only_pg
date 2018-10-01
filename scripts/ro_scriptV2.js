@@ -8,8 +8,9 @@
 */
 
 var add_space_regEx = /\B(?=\d)/;
-var data_polling_interval = 5000;
-var PA_list = ["PA 1", "PA 2", "PA 3", "PA 4", "PA 8", "PA 9", "PA 13", "PA 14", "PA 15", "PA 16", "PA 17", "PA 18"]; /*["PA 42", "PA 43", "PA 44", "PA 45", "PA 46"] */
+var data_polling_interval = 65000;
+var reload_page_delay = 864000000; // reload the webpage every 10 days.
+var PA_list = ["PA 1", "PA 2", "PA 3", "PA 4", "PA 8", "PA 9", "PA 13", "PA 14", "PA 15", "PA 16", "PA 17", "PA 18", "PA 42", "PA 43", "PA 44", "PA 45", "PA 46"];
     
 function activatePAPanel(panel_id) {    
     /* This function changes the opacity of the corresponding PA panel on the page
@@ -52,6 +53,113 @@ function deactivatePAPanel(panel_id) {
        INPUT: panel_id (string)
     */
     document.getElementById(panel_id).setAttribute('class', "noSRC");
+}
+
+
+function drawTableElements() {
+    /* This function places the table rows and cells
+       and cell content elements of the table used to 
+       display the PA information
+    */
+    // Initialize variables
+    var num_cells_per_row = 5;
+    var num_tab_rows = Math.ceil((PA_list.length / num_cells_per_row));
+    var table = document.getElementById("pa_table"); 
+
+    for (var row_ct = 0; row_ct < num_tab_rows; row_ct++) {
+        var new_row = document.createElement('tr');
+        table.appendChild(new_row);
+        PA_list.slice((row_ct * num_cells_per_row), ((row_ct * num_cells_per_row) + num_cells_per_row)).forEach(function(elem, pa_ind) {
+            // Initialize table element variables
+            var new_cell = document.createElement('td');
+            var new_src_p = document.createElement('p');
+            var new_output_p = document.createElement('p');
+            var new_src_span = document.createElement('span');
+            var new_hdout_span = document.createElement('span');
+            var new_sdout_span = document.createElement('span');
+            var new_client_span = document.createElement('span');
+            var sdout_str = ( elem.slice(3).length == 1 ) ? ("PA 100" + elem.slice(3)) : ("PA 10" + elem.slice(3));
+
+            new_cell.setAttribute('id', elem);
+            new_cell.setAttribute('class', "noSRC");
+            new_src_p.setAttribute('class', "paIO");
+            new_src_span.setAttribute('class', "src");
+            new_output_p.setAttribute('class', "paIO");
+            new_hdout_span.setAttribute('class', "hdsd");
+            new_sdout_span.setAttribute('class', "hdsd");
+            new_client_span.setAttribute('id', "client");
+            new_client_span.setAttribute('class', "hdsd");
+            new_src_p.appendChild(document.createTextNode("SRC:"))
+            new_src_p.appendChild(new_src_span);
+            new_cell.appendChild(new_src_p);
+            new_output_p.appendChild(document.createTextNode("HD OUT:"));
+            new_hdout_span.appendChild(document.createTextNode(elem));
+            new_output_p.appendChild(new_hdout_span);
+            new_output_p.appendChild(document.createElement('br'));
+            new_output_p.appendChild(document.createTextNode("SD OUT:"));
+            new_sdout_span.appendChild(document.createTextNode(sdout_str));
+            new_output_p.appendChild(new_sdout_span);
+            new_output_p.appendChild(document.createElement('br'));
+            new_output_p.appendChild(document.createTextNode("CLIENT:"));
+            new_output_p.appendChild(new_client_span);
+            new_cell.appendChild(new_output_p);
+            new_row.appendChild(new_cell);
+        });
+    }
+    console.log("CALLING getNewData()");
+    getNewData();
+    console.log("CALLING refreshData()");
+    refreshData();
+    console.log("CALLING reloadPage()");
+    reloadPage();
+}
+
+
+function getNewData() {
+    /* This function is used to acquire the PA data from the Quartz 
+       microservice that is stored in a local file that is served at /pa_data 
+    */
+    var file_contents_arr = null;
+    var qfile_xhr_obj = new XMLHttpRequest();
+        
+    qfile_xhr_obj.onreadystatechange = function() {
+        if ( qfile_xhr_obj.status == 200 && qfile_xhr_obj.readyState == 4 ) {
+            file_contents_arr = JSON.parse(qfile_xhr_obj.responseText);
+            // request new data from the QC PA page in order to acquire the client string
+            var pa_pg_url = "http://opsvm3.turner.com:3000/api/pas";
+            var new_pa_pg_req = new XMLHttpRequest();
+            
+            new_pa_pg_req.addEventListener("load", function() {
+                var pa_pg_response  = JSON.parse(this.response);
+                var trimmed_PA_obj_list = [];
+                /* attempt to inject the client property into the 
+                   appropriate PA object in file_contents_arr */
+                PA_list.forEach(function(pa_str) {
+                    var papg_match = pa_pg_response.find(function(papg_elem) {
+                        return ( pa_str.slice(3) == papg_elem.panumber );
+                    });
+                    var qfile_match = file_contents_arr.find(function(qfile_elem) {
+                        return ( pa_str == qfile_elem.globalName );
+                    });
+                    if (papg_match != undefined) {
+                        trimmed_PA_obj_list.push({globalName:pa_str, source:qfile_match.source.globalName, client:( papg_match.client == null ) ? "---" : papg_match.client});
+                    } else {
+                        trimmed_PA_obj_list.push({globalName:pa_str, source:qfile_match.source.globalName, client:"---"});
+                    }
+                });
+                //console.log(pa_pg_response);
+                //console.log(file_contents_arr);
+                //console.log(trimmed_PA_obj_list);
+                updatePage(trimmed_PA_obj_list);
+            });
+            new_pa_pg_req.open('GET', pa_pg_url);
+            new_pa_pg_req.send();
+        } else if ( qfile_xhr_obj.status == 404 && qfile_xhr_obj.readyState == 4 ) { // the file does not exist
+            updatePage(null);
+        }
+    };
+    qfile_xhr_obj.open('GET', "/pa_data");
+    qfile_xhr_obj.send();
 }
 
 
@@ -129,35 +237,20 @@ function normalizeClientString (inc_str) {
 }
 
 
-function getExternalData() {
-    readQuartzFile();
+function refreshData() {
+    /* This function is used to periodically acquire client data 
+       from the BCC/QC PA page and the quartz microservice. 
+    */
     setInterval(function() {
-        var url = "http://opsvm3.turner.com:3000/api/pas";
-        var new_req = new XMLHttpRequest();
-     
-        new_req.addEventListener("load", function() {
-            var pa_response  = JSON.parse(this.response);
-            //updatePage(pa_response);
-        });
-        new_req.open('GET', url);
-        new_req.send();
-        //console.log("***** NEW DATA REQUEST *****"); 
+        getNewData();
     }, data_polling_interval);
 }
 
 
-function readQuartzFile() {
-    var file_contents_arr = null;
-    var xhr_obj = new XMLHttpRequest();
-
-    xhr_obj.onreadystatechange = function() {
-        if ( xhr_obj.status == 200 && xhr_obj.readyState == 4 ) {
-            file_contents_arr = JSON.parse(xhr_obj.responseText);
-            updatePage(file_contents_arr);
-        }
-    };
-    xhr_obj.open('GET', "/pa_data");
-    xhr_obj.send();
+function reloadPage() {
+    setInterval(function() {
+        window.location.reload(true);
+    }, reload_page_delay);
 }
 
 
@@ -171,33 +264,38 @@ function updatePage(dest_arr) {
        INPUT: dest_arr (array of objects)
     */
     
-    console.log(dest_arr);
-    dest_arr.forEach(function(elem) {
-        var curr_pa = elem.globalName;
-        
-        if ( PA_list.includes(curr_pa) ) {
-            var curr_src = elem.source.globalName;
-            console.log(curr_pa + ": " + curr_src);
-            var src_span = document.querySelector("td[id = '" + curr_pa + "'] span[class = 'src']");
-            var client_span = document.querySelector("td[id = '" + curr_pa + "'] span[id = 'client']");
-            var old_src = src_span.innerText;
-            var new_src = ( curr_src.slice(0, 2) == "TS" ) ? null : curr_src;
+    //console.log("FILE CONTENTS AS AN ARRAY: " + dest_arr);
+    if ( dest_arr == null ) {
+        console.log("The file was not found");
+    } else {
+        dest_arr.forEach(function(curr_elem) {
+            var pa = curr_elem.globalName;
             
-            if ( new_src == null && old_src !== "---" ) {
-                animateNewSrc(curr_pa, 0.3);
-                setTimeout(function () {
-                    src_span.innerHTML = "---";
-                    client_span.innerHTML = "---";
-                    deactivatePAPanel(curr_pa);
-                }, 300);
-            } else if ( curr_src != null && ( new_src != old_src ) ) {
-                animateNewSrc(curr_pa, 1);
-                setTimeout(function () {
-                    src_span.innerHTML = new_src;
-                    client_span.innerHTML = "---";
-                    activatePAPanel(curr_pa);
-                }, 1000);
+            if ( PA_list.includes(pa) ) {
+                var new_src = curr_elem.source; // new source wrt to the data in the file vs. already on the page.
+                var new_client = normalizeClientString(curr_elem.client);                
+                var src_span = document.querySelector("td[id = '" + pa + "'] span[class = 'src']");
+                var client_span = document.querySelector("td[id = '" + pa + "'] span[id = 'client']");
+                var old_src = src_span.innerText;
+                //console.log(pa + " -- NEW SRC: " + new_src);
+                //console.log("         OLD_SRC: " + old_src);
+                
+                if ( new_src.slice(0, 2) == "TS" && ( new_src != old_src ) ) {
+                    animateNewSrc(pa, 0.3);
+                    setTimeout(function () {
+                        src_span.innerHTML = new_src;
+                        client_span.innerHTML = "---";
+                        deactivatePAPanel(pa);
+                    }, 300);
+                } else if ( new_src != old_src ) {
+                    animateNewSrc(pa, 1);
+                    setTimeout(function () {
+                        src_span.innerHTML = new_src;
+                        client_span.innerHTML = new_client;
+                        activatePAPanel(pa);
+                    }, 1000);
+                }
             }
-        }
-    });
+        });
+    }
 }

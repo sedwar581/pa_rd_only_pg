@@ -12,12 +12,10 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Google Fonts API -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald|Raleway">
+    <!-- CSS by Steven Edwards -->
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <!-- Terry 9/21 -->
-    <!--<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">-->
-
   </head>
-  <body onload = 'JavaScript:getExternalData();'>
+  <body onload = 'JavaScript:drawTableElements();'>
     <div id="mainDiv">
       <table id="patable">
         <tbody id="pa_table">
@@ -42,19 +40,6 @@
             alert("This PA page was designed to work with the Chrome | Firefox Browsers. Please close this page and open it in Chrome | Firefox.");
             location.href = "http://www.google.com/";
         }
-    </script>
-  
-  <!-- Terry, 9/21 -->
-  <script type="application/javascript" src="jquery/dist/jquery.js"></script>
-  <!--load the socket.io-client, which expose a io global, and then connect-->
-  <script type="application/javascript" src="/socket.io/socket.io.js"></script>
-  
-  <script type="application/javascript" src="angular/angular.js"></script>
-  <script type="application/javascript" src="angular-route/angular-route.js"></script>
-  <script type="application/javascript" src="bootstrap/dist/js/bootstrap.js"></script>
-  
-  <script type="application/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="application/javascript" src = "https://d3js.org/d3.v5.min.js" charset = "utf-8"></script>
-  <script type="application/javascript" src = "/scripts/ro_scriptV2.js"></script>  
-  
+  </script>
+  <script type="application/javascript" src = "/scripts/ro_scriptV2.js"></script>
 </html>

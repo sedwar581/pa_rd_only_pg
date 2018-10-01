@@ -12,7 +12,7 @@ var express = require('express');
 var app = express();
 var port = 4302;
 
-app.get('/', function(req, res) {
+app.get('/Read-Only-PA-Page', function(req, res) {
     res.type('text/html');
     res.sendFile(__dirname + '/rd_only_pa_pgV2.html');
     }
