@@ -178,10 +178,8 @@ function normalizeClientString (inc_str) {
        INPUT: inc_str
        OUTPUT: new_str
     */
-    console.log(inc_str);
     if ( typeof inc_str === 'string' ) {  // makes string lowercase and removes hyphens and spaces
         var min_client = inc_str.toLowerCase().replace(/[-,\s]/g, '');
-        console.log(min_client);
     } else { // turn clients with null values into empty strings
         var min_client = "";
     }
