@@ -67,9 +67,18 @@ function drawTableElements() {
     var table = document.getElementById("pa_table"); 
 
     for (var row_ct = 0; row_ct < num_tab_rows; row_ct++) {
+        var PA_sub_arr = null;
+        // this if block was added to draw a table of 3 rows of 4 cells and one row of 5 cells; PAs 42 - 46.
+        if ( row_ct < (num_tab_rows - 1) ) {
+            num_cells_per_row = 4;
+            PA_sub_arr = PA_list.slice((row_ct * num_cells_per_row), ((row_ct * num_cells_per_row) + num_cells_per_row));
+        } else if ( row_ct == (num_tab_rows - 1) ){
+            num_cells_per_row = 5;
+            PA_sub_arr = PA_list.slice(((row_ct * num_cells_per_row) - 3), (((row_ct * num_cells_per_row) + num_cells_per_row) - 3));
+        }
         var new_row = document.createElement('tr');
         table.appendChild(new_row);
-        PA_list.slice((row_ct * num_cells_per_row), ((row_ct * num_cells_per_row) + num_cells_per_row)).forEach(function(elem, pa_ind) {
+        PA_sub_arr.forEach(function(elem, pa_ind) {
             // Initialize table element variables
             var new_cell = document.createElement('td');
             var new_src_p = document.createElement('p');
@@ -169,8 +178,10 @@ function normalizeClientString (inc_str) {
        INPUT: inc_str
        OUTPUT: new_str
     */
+    console.log(inc_str);
     if ( typeof inc_str === 'string' ) {  // makes string lowercase and removes hyphens and spaces
         var min_client = inc_str.toLowerCase().replace(/[-,\s]/g, '');
+        console.log(min_client);
     } else { // turn clients with null values into empty strings
         var min_client = "";
     }
@@ -230,6 +241,8 @@ function normalizeClientString (inc_str) {
         new_str = 'NS';
     } else if ( min_client.startsWith('acc') || min_client.includes('affiliate') || min_client.includes('aff') || min_client.includes('fili') || min_client.includes('ffilat')) {
         new_str = 'AFF. DESK';
+    } else if ( min_client == "" ) {
+        new_str = '---';
     } else {
         new_str = 'OTHER';
     }

@@ -27,14 +27,9 @@
         //Conditional comments to get Ops Engineers to use this only in Chrome
         //User agent from the browser is grabbed and tested to see if Chrome is in the string, and if it is not, display a JS alert and redirect to Chrome site
         var agent = navigator.userAgent;
-    
         var chrome = agent.indexOf("Chrome");
         var firefox = agent.indexOf("Firefox");
-    
         var added1 = (chrome + firefox);
-    
-        //console.log(agent + '>>Chrome>>' + chrome + '>>Firefox>>' + firefox);
-        //console.log(added1);
     
         if ( added1 === -2 ) {
             alert("This PA page was designed to work with the Chrome | Firefox Browsers. Please close this page and open it in Chrome | Firefox.");

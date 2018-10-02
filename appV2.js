@@ -20,7 +20,9 @@ app.get('/Read-Only-PA-Page', function(req, res) {
 
 app.get('/style.css', function(req, res) {
     res.type('text/css');
-    res.sendFile(__dirname + '/style.css');
+    res.sendFile(__dirname + '/css/Green_White_papg.css');
+    //res.sendFile(__dirname + '/css/Yellow_Green_papg.css');
+    //res.sendFile(__dirname + '/css/White_Green_papg.css');
     }
 );
 
