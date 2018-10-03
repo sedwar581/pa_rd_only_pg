@@ -221,6 +221,8 @@ function normalizeClientString (inc_str) {
         new_str = 'BTS ENG.';
     } else if ( min_client.includes('hk') || min_client.includes('hongkong') || min_client.startsWith('8') ) {
         new_str = 'HK';
+    } else if ( min_client.startsWith('u') ) {
+            new_str = 'ABU DHABI';
     } else if ( min_client.includes('9a') || min_client.includes('dca') ) {
         new_str = 'DC A-CTRL';
     } else if ( min_client.includes('9b') || min_client.includes('dcb') ) {
@@ -288,6 +290,7 @@ function updatePage(dest_arr) {
                 var src_span = document.querySelector("td[id = '" + pa + "'] span[class = 'src']");
                 var client_span = document.querySelector("td[id = '" + pa + "'] span[id = 'client']");
                 var old_src = src_span.innerText;
+                //var valid_img = document.createElement('img');
                 //console.log(pa + " -- NEW SRC: " + new_src);
                 //console.log("         OLD_SRC: " + old_src);
                 
@@ -296,6 +299,9 @@ function updatePage(dest_arr) {
                     setTimeout(function () {
                         src_span.innerHTML = new_src;
                         client_span.innerHTML = "---";
+                        //valid_img.setAttribute('src', "/graphics/VALID_TS");
+                        //valid_img.setAttribute('class', "valid_loop")
+                        //src_span.parentElement.appendChild(valid_img);
                         deactivatePAPanel(pa);
                     }, 300);
                 } else if ( new_src != old_src ) {

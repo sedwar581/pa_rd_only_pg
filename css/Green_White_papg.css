@@ -19,8 +19,6 @@ p {
     margin: 0;
 }
 
-table {}
-
 td {
     background-color: rgba(0, 173, 0, 0.997);
     border: 0.25em solid white;
@@ -30,8 +28,6 @@ td {
     padding-right: 0.3em;
     width: 23vw;
 }
-
-tr {}
 
 #client {
     font-size: 1.2em;
@@ -58,8 +54,6 @@ tr {}
     display: none;
 }
 
-.newSRC {}
-
 .noSRC {
     opacity: 0.3;
     background-color: rgba(124, 121, 127, 0.7);
@@ -77,4 +71,11 @@ tr {}
     font-size: 6.7em;
     font-weight: bold;
     color: white; 
+}
+
+.valid_loop {
+    z-index: -1;
+    height: 120px;
+    width: 213px;
+    margin: 20px 0px 0px 30px;
 }

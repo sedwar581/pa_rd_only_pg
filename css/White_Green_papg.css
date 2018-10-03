@@ -78,3 +78,9 @@ tr {}
     font-weight: bold;
     color: rgba(0, 189, 0, 1); 
 }
+
+.valid_loop {
+    height: 80px;
+    width: 142px;
+    margin: 20px 0px 0px 30px;
+}

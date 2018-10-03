@@ -24,6 +24,11 @@ app.get('/style.css', function(req, res) {
     }
 );
 
+app.get('/graphics/VALID_TS', function(req, res) {
+    res.type('image/gif');
+    res.sendFile(__dirname + '/graphics/VALID_TS_loop_23fps_480px.gif');
+});
+
 app.get('/scripts/ro_script.js', function(req, res) {
     res.type('application/javascript');
     res.sendFile(__dirname + '/scripts/ro_script.js');
