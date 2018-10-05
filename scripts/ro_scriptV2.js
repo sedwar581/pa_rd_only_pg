@@ -1,11 +1,11 @@
-/* 
+/*-------------------------------------------------* 
   - Processing Amplifier (PA) Read-Only Page
   - For use in control rooms of the CNN networks;
     this file contains the script used to affect 
     change on the read only PA page. 
   - Author: Steven Edwards
   - Page Started: September 2018
-*/
+*--------------------------------------------------*/
 
 var add_space_regEx = /\B(?=\d)/;
 var data_polling_interval = 65000;
@@ -68,7 +68,7 @@ function drawTableElements() {
 
     for (var row_ct = 0; row_ct < num_tab_rows; row_ct++) {
         var PA_sub_arr = null;
-        // this if block was added to draw a table of 3 rows of 4 cells and one row of 5 cells; PAs 42 - 46.
+        // this if-block was added to draw a table of 3 rows of 4 cells and one row of 5 cells; PAs 42 - 46.
         if ( row_ct < (num_tab_rows - 1) ) {
             num_cells_per_row = 4;
             PA_sub_arr = PA_list.slice((row_ct * num_cells_per_row), ((row_ct * num_cells_per_row) + num_cells_per_row));
@@ -79,7 +79,7 @@ function drawTableElements() {
         var new_row = document.createElement('tr');
         table.appendChild(new_row);
         PA_sub_arr.forEach(function(elem, pa_ind) {
-            // Initialize table element variables
+            // Initialize table-cell and its child-element variables
             var new_cell = document.createElement('td');
             var new_src_p = document.createElement('p');
             var new_output_p = document.createElement('p');
