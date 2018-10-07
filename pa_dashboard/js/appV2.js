@@ -12,8 +12,6 @@ var express = require('express');
 var app = express();
 var port = 4302;
 
-app.use(express.static(__dirname + '/..'));
-
 app.get('/Read-Only-PA-Page', function(req, res) {
     res.type('html');
     res.sendFile('/html/rd_only_pa_pgV2.html', {root: __dirname + '/..'});
