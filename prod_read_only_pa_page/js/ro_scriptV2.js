@@ -294,7 +294,7 @@ function updatePage(dest_arr) {
                 //console.log(pa + " -- NEW SRC: " + new_src);
                 //console.log("         OLD_SRC: " + old_src);
                 
-                if ( new_src.slice(0, 2) == "TS" && ( new_src != old_src ) ) {
+                if ( (new_src.slice(0, 2) == "TS" || new_src.slice(0, 2) == "BK") && ( new_src != old_src ) ) {
                     animateNewSrc(pa, 0.3);
                     setTimeout(function () {
                         src_span.innerHTML = new_src;
