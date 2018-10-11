@@ -18,10 +18,12 @@ app.get('/Read-Only-PA-Page', function(req, res) {
 });
 
 app.get('/style.css', function(req, res) {
-    res.type('text/css');
-    res.sendFile('/css/Green_White_papg.css', {root: __dirname + '/..'});
-    //res.sendFile(__dirname + '/css/Yellow_Green_papg.css');
-    //res.sendFile(__dirname + '/css/White_Green_papg.css');
+    res.type('text/css');  
+    //res.sendFile('/css/White_Yellow_On_Black_papg.css', {root: __dirname + '/..'});
+    //res.sendFile('/css/White_On_Green_papg.css', {root: __dirname + '/..'});
+    //res.sendFile('/css/Green_On_Yellow_papg.css', {root: __dirname + '/..'});
+    res.sendFile('/css/Green_On_White_papg.css', {root: __dirname + '/..'});
+    //res.sendFile('/css/Green_White_On_Black_papg.css', {root: __dirname + '/..'});
 });
 
 app.get('/graphics/VALID_TS', function(req, res) {

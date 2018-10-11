@@ -7,15 +7,13 @@
 
 <html>
   <head>
-    <title>PA Read Only Page</title>
+    <title>*DEV* PA Dashboard</title>
     <!-- Compiled and minified Font Awesome CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Google Fonts API -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald|Raleway">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald|Raleway:400,800,900|Exo|Kanit|Maven Pro|Share|Roboto Condensed">
+    <!-- CSS by Steven Edwards -->
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <!-- Terry 9/21 -->
-    <!--<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">-->
-
   </head>
   <body onload = 'JavaScript:getExternalData();'>
     <div id="mainDiv">
@@ -24,144 +22,144 @@
           <tr>
             <td id="pa1" class="noSRC">
               <!--<i class="loadingIcon fa fa-spinner fa-pulse fa-5x fa-fw"></i>-->
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 1</span><br>
-                SD OUT:<span class="hdsd">PA 1001</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 1</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1001</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa2" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 2</span><br>
-                SD OUT:<span class="hdsd">PA 1002</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 2</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1002</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
 
             </td>
             <td id="pa3" class="noSRC">
-                <p class="paIO">SRC:<span class="src">---</span></p>
+                <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
                 <p class="paIO">
-                  HD OUT:<span class="hdsd">PA 3</span><br>
-                  SD OUT:<span class="hdsd">PA 1003</span><br><br>
-                  CLIENT:<span id="client" class="hdsd">---</span>
+                  <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 3</span>
+                  <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1003</span><br><br>
+                  <span class="iocTitle">CLIENT:</span><span id="client">---</span>
                 </p>
             </td>
             <td id="pa4" class="noSRC">
-                <p class="paIO">SRC:<span class="src">---</span></p>
+                <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
                 <p class="paIO">
-                  HD OUT:<span class="hdsd">PA 4</span><br>
-                  SD OUT:<span class="hdsd">PA 1004</span><br><br>
-                  CLIENT:<span id="client" class="hdsd">---</span>
+                  <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 4</span>
+                  <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1004</span><br><br>
+                  <span class="iocTitle">CLIENT:</span><span id="client">---</span>
                 </p>
             </td>
           </tr>
           <tr>
             <td id="pa8" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 8</span><br>
-                SD: OUT<span class="hdsd">PA 1008</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 8</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1008</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa9" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 9</span><br>
-                SD OUT:<span class="hdsd">PA 1009</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 9</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1009</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa13" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 13</span><br>
-                SD OUT:<span class="hdsd">PA 1013</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span></p>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 13</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1013</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span></p>
             </td>
             <td id="pa14" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 14</span><br>
-                SD OUT:<span class="hdsd">PA 1014</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span></p>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 14</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1014</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span></p>
             </td>
           </tr>
           <tr>
             <td id="pa15" class="noSRC" style="background-image:url(/graphics/VALID_TS); background-repeat: no-repeat; background-size: 100% 105%"">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 15</span><br>
-                SD OUT:<span class="hdsd">PA 1015</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 15</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1015</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa16" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 16</span><br>
-                SD OUT:<span class="hdsd">PA 1016</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 16</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1016</span>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa17" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 17</span><br>
-                SD OUT:<span class="hdsd">PA 1017</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 17</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1017</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa18" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 18</span><br>
-                SD OUT:<span class="hdsd">PA 1018</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 18</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1018</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
           </tr>
           <tr>
             <td id="pa42" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 42</span><br>
-                SD OUT:<span class="hdsd">PA 1042</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 42</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1042</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa43" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 43</span><br>
-                SD OUT:<span class="hdsd">PA 1043</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 43</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1043</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa44" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 44</span><br>
-                SD OUT:<span class="hdsd">PA 1044</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 44</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1044</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa45" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 45</span><br>
-                SD OUT:<span class="hdsd">PA 1045</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 45</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1045</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
             <td id="pa46" class="noSRC">
-              <p class="paIO">SRC:<span class="src">---</span></p>
+              <p class="paIO"><span class="iocTitle">SRC:</span><span class="src">---</span></p>
               <p class="paIO">
-                HD OUT:<span class="hdsd">PA 46</span><br>
-                SD OUT:<span class="hdsd">PA 1046</span><br><br>
-                CLIENT:<span id="client" class="hdsd">---</span>
+                <span class="iocTitle">HD OUT:</span><span class="hdsd">PA 46</span>
+                <span class="iocTitle">SD OUT:</span><span class="hdsd">PA 1046</span><br><br>
+                <span class="iocTitle">CLIENT:</span><span id="client">---</span>
               </p>
             </td>
           </tr>
@@ -187,17 +185,5 @@
           location.href = "http://www.google.com/";
       }
   </script>
-
-<!-- Terry, 9/21 -->
-<script type="application/javascript" src="jquery/dist/jquery.js"></script>
-<!--load the socket.io-client, which expose a io global, and then connect-->
-<script type="application/javascript" src="/socket.io/socket.io.js"></script>
-
-<script type="application/javascript" src="angular/angular.js"></script>
-<script type="application/javascript" src="angular-route/angular-route.js"></script>
-<script type="application/javascript" src="bootstrap/dist/js/bootstrap.js"></script>
-
-<script type="application/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="application/javascript" src = "https://d3js.org/d3.v5.min.js" charset = "utf-8"></script>
 <script type="application/javascript" src = "/scripts/ro_script.js"></script>  
 </html>

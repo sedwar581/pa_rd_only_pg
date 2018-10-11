@@ -11,15 +11,9 @@ body {
     background-color: rgba(10, 05, 10, 0.99);
 }
 
-i {
-    opacity: 0.2;
-}
-
 p {
     margin: 0;
 }
-
-table {}
 
 td {
     background-color: rgba(241, 255, 46, 0.997);
@@ -28,13 +22,16 @@ td {
     padding-bottom: 0.2em;
     padding-left: 0.3em;
     padding-right: 0.3em;
-    width: 23vw;
+    width: 20vw;
 }
-
-tr {}
 
 #client {
     font-size: 1.2em;
+    font-family: "Oswald";
+    font-weight: bold;
+    color: rgba(206, 10, 10, 0.8);
+    margin-left: 0.1em;
+    margin-right: 0.1em;
 }
 
 #mainDiv {
@@ -43,32 +40,37 @@ tr {}
 
 .hdsd {
     font-family: "Oswald";
-    font-size: 1.9em;
+    font-size: 3.5em;
     font-weight: bold;
-    color: rgba(0, 189, 0, 1);
-    margin-left: 0.5em; 
+    color: rgba(245, 246, 250, 0.671);
+    margin-left: 0.1em;
+    margin-left: 0.1em 
 }
 
-.loading-icon {
-    position: absolute;
-    z-index: 1;
-    vertical-align: middle;
-    font-size: 8em;
-    height: 3em;
-    display: none;
+.iocTitle {
+    font-size: 0.8em;
 }
 
-.newSRC {}
+.paNum {
+    color: rgba(0, 0, 0, 0.897);
+}
 
 .noSRC {
     opacity: 0.3;
     background-color: rgba(124, 121, 127, 0.7);
 }
 
+.noSrcSpan {
+    font-family: "Oswald";
+    font-size: 4.5vw;
+    font-weight: bold;
+    color: rgba(123, 128, 120, 1); 
+}
+
 .paIO {
     font-family: "Raleway";
     font-size: 0.7vw;
-    font-weight: bold;
+    font-weight: 600;
     color: rgba(0, 0, 0, 0.99);
 }
 
@@ -77,10 +79,4 @@ tr {}
     font-size: 6.7em;
     font-weight: bold;
     color: rgba(0, 189, 0, 1); 
-}
-
-.valid_loop {
-    height: 80px;
-    width: 142px;
-    margin: 20px 0px 0px 30px;
 }

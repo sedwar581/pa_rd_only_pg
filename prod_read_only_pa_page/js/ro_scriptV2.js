@@ -18,6 +18,11 @@ function activatePAPanel(panel_id) {
        INPUT: panel_id (string)
     */
     document.getElementById(panel_id).classList.remove("noSRC");
+    var pa_number_spans = document.querySelector('td[id="' + panel_id + '"]>p:last-child').querySelectorAll('span.hdsd:not([id="client"])');
+    
+    pa_number_spans.forEach(function(elem) {
+        elem.classList.add("paNum");
+    });
 }
 
 
@@ -52,7 +57,10 @@ function deactivatePAPanel(panel_id) {
        by changing the class of the td element for the PA
        INPUT: panel_id (string)
     */
-    document.getElementById(panel_id).setAttribute('class', "noSRC");
+    var table_cell = document.getElementById(panel_id);
+    
+    table_cell.setAttribute('class', "noSRC");
+    table_cell.querySelector('p>span.src').setAttribute('class', "noSrcSpan");
 }
 
 
@@ -83,34 +91,46 @@ function drawTableElements() {
             var new_cell = document.createElement('td');
             var new_src_p = document.createElement('p');
             var new_output_p = document.createElement('p');
+            var new_srcTitle_span = document.createElement('span');
             var new_src_span = document.createElement('span');
+            var new_hdOutTitle_span = document.createElement('span');
             var new_hdout_span = document.createElement('span');
+            var new_sdOutTitle_span = document.createElement('span');
             var new_sdout_span = document.createElement('span');
+            var new_clientTitle_span = document.createElement('span');
             var new_client_span = document.createElement('span');
             var sdout_str = ( elem.slice(3).length == 1 ) ? ("PA 100" + elem.slice(3)) : ("PA 10" + elem.slice(3));
 
             new_cell.setAttribute('id', elem);
             new_cell.setAttribute('class', "noSRC");
             new_src_p.setAttribute('class', "paIO");
+            new_srcTitle_span.setAttribute('class', "iocTitle");
             new_src_span.setAttribute('class', "src");
             new_output_p.setAttribute('class', "paIO");
+            new_hdOutTitle_span.setAttribute('class', "iocTitle");
             new_hdout_span.setAttribute('class', "hdsd");
+            new_sdOutTitle_span.setAttribute('class', "iocTitle");
             new_sdout_span.setAttribute('class', "hdsd");
+            new_clientTitle_span.setAttribute('class', "iocTitle");
             new_client_span.setAttribute('id', "client");
             new_client_span.setAttribute('class', "hdsd");
-            new_src_p.appendChild(document.createTextNode("SRC:"))
+            new_srcTitle_span.appendChild(document.createTextNode("SRC:"));
+            new_src_p.appendChild(new_srcTitle_span);
             new_src_p.appendChild(new_src_span);
             new_cell.appendChild(new_src_p);
-            new_output_p.appendChild(document.createTextNode("HD OUT:"));
+            new_output_p.appendChild(document.createElement('br'));
+            new_clientTitle_span.appendChild(document.createTextNode("CLIENT:"));
+            new_output_p.appendChild(new_clientTitle_span);
+            new_output_p.appendChild(new_client_span);
+            new_output_p.appendChild(document.createElement('br'));
+            new_hdOutTitle_span.appendChild(document.createTextNode("HD OUT:"));
+            new_output_p.appendChild(new_hdOutTitle_span);
             new_hdout_span.appendChild(document.createTextNode(elem));
             new_output_p.appendChild(new_hdout_span);
-            new_output_p.appendChild(document.createElement('br'));
-            new_output_p.appendChild(document.createTextNode("SD OUT:"));
+            new_sdOutTitle_span.appendChild(document.createTextNode("SD OUT:"));
+            new_output_p.appendChild(new_sdOutTitle_span);
             new_sdout_span.appendChild(document.createTextNode(sdout_str));
             new_output_p.appendChild(new_sdout_span);
-            new_output_p.appendChild(document.createElement('br'));
-            new_output_p.appendChild(document.createTextNode("CLIENT:"));
-            new_output_p.appendChild(new_client_span);
             new_cell.appendChild(new_output_p);
             new_row.appendChild(new_cell);
         });
@@ -199,7 +219,7 @@ function normalizeClientString (inc_str) {
         new_str = 'H-CTRL';
     } else if ( min_client.startsWith('ic') || min_client.startsWith('id') ) {
         new_str = 'I-CTRL';
-    } else if ( min_client.includes('.com') || min_client.includes('dotcom') || min_client.includes('digitalvideo') ) {
+    } else if ( min_client.includes('.com') || min_client.includes('dotcom') || min_client.includes('dig') ) {
         new_str = 'CNN.com';
     } else if ( min_client.startsWith('sats') || min_client.includes('sat') ) {
         new_str = 'SATS';
@@ -222,7 +242,7 @@ function normalizeClientString (inc_str) {
     } else if ( min_client.includes('hk') || min_client.includes('hongkong') || min_client.startsWith('8') ) {
         new_str = 'HK';
     } else if ( min_client.startsWith('u') ) {
-            new_str = 'ABU DHABI';
+        new_str = 'ABU DHABI';
     } else if ( min_client.includes('9a') || min_client.includes('dca') ) {
         new_str = 'DC A-CTRL';
     } else if ( min_client.includes('9b') || min_client.includes('dcb') ) {
@@ -263,6 +283,7 @@ function refreshData() {
 function reloadPage() {
     setInterval(function() {
         window.location.reload(true);
+        console.log("Page reloaded on: " + new Date(Date.now()));
     }, reload_page_delay);
 }
 
@@ -287,8 +308,8 @@ function updatePage(dest_arr) {
             if ( PA_list.includes(pa) ) {
                 var new_src = curr_elem.source; // new source wrt to the data in the file vs. already on the page.
                 var new_client = normalizeClientString(curr_elem.client);                
-                var src_span = document.querySelector("td[id = '" + pa + "'] span[class = 'src']");
-                var client_span = document.querySelector("td[id = '" + pa + "'] span[id = 'client']");
+                var src_span = document.querySelector("td[id = '" + pa + "'] span[class*='src' i]");
+                var client_span = document.querySelector("td[id = '" + pa + "'] span[id='client']");
                 var old_src = src_span.innerText;
                 //var valid_img = document.createElement('img');
                 //console.log(pa + " -- NEW SRC: " + new_src);
