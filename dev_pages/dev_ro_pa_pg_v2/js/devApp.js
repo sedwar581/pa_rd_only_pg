@@ -10,9 +10,9 @@
 // Initialize variables
 var express = require('express');
 var app = express();
-var port = 4302;
+var port = 4353;
 
-app.get('/Read-Only-PA-Page', function(req, res) {
+app.get('/DEV-PAPG-v2', function(req, res) {
     res.type('html');
     res.sendFile('/html/rd_only_pa_pgV2.html', {root: __dirname + '/..'});
 });

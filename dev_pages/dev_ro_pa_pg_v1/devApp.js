@@ -12,7 +12,7 @@ var express = require('express');
 var app = express();
 var port = 4343;
 
-app.get('/DEV-PAPG-v2', function(req, res) { // add "read only" to the path
+app.get('/DEV-PAPG-v1', function(req, res) { // add "read only" to the path
     res.type('text/html');
     res.sendFile(__dirname + '/rd_only_pa_pg.html');
     }
