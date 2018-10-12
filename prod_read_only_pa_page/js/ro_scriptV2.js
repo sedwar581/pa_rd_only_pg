@@ -19,7 +19,9 @@ function activatePAPanel(panel_id) {
     */
     document.getElementById(panel_id).classList.remove("noSRC");
     var pa_number_spans = document.querySelector('td[id="' + panel_id + '"]>p:last-child').querySelectorAll('span.hdsd:not([id="client"])');
-    
+    var src_span = document.querySelector('td[id="' + panel_id + '"]>p').querySelector('span:last-child');
+
+    src_span.setAttribute('class', "src");    
     pa_number_spans.forEach(function(elem) {
         elem.classList.add("paNum");
     });
@@ -58,9 +60,13 @@ function deactivatePAPanel(panel_id) {
        INPUT: panel_id (string)
     */
     var table_cell = document.getElementById(panel_id);
+    var pa_num_spans = table_cell.querySelector('p:last-child').querySelectorAll('span.hdsd');
     
     table_cell.setAttribute('class', "noSRC");
-    table_cell.querySelector('p>span.src').setAttribute('class', "noSrcSpan");
+    ( table_cell.querySelector('p>span.src') != null) ? table_cell.querySelector('p>span.src').setAttribute('class', "noSrcSpan") : null;
+    pa_num_spans.forEach(function(elem_span) {
+        elem_span.classList.remove("paNum");
+    });
 }
 
 
@@ -170,7 +176,7 @@ function getNewData() {
                     var qfile_match = file_contents_arr.find(function(qfile_elem) {
                         return ( pa_str == qfile_elem.globalName );
                     });
-                    if (papg_match != undefined) {
+                    if (papg_match != undefined) { // in case the PA in the PA_list is not on the PA page.
                         trimmed_PA_obj_list.push({globalName:pa_str, source:qfile_match.source.globalName, client:( papg_match.client == null ) ? "---" : papg_match.client});
                     } else {
                         trimmed_PA_obj_list.push({globalName:pa_str, source:qfile_match.source.globalName, client:"---"});
@@ -183,6 +189,7 @@ function getNewData() {
             });
             new_pa_pg_req.open('GET', pa_pg_url);
             new_pa_pg_req.send();
+            console.log("\nNEW DATA REQUESTED: " + new Date(Date.now()));
         } else if ( qfile_xhr_obj.status == 404 && qfile_xhr_obj.readyState == 4 ) { // the file does not exist
             updatePage(null);
         }
@@ -298,9 +305,8 @@ function updatePage(dest_arr) {
        INPUT: dest_arr (array of objects)
     */
     
-    //console.log("FILE CONTENTS AS AN ARRAY: " + dest_arr);
     if ( dest_arr == null ) {
-        console.log("The file was not found");
+        console.log("The Quartz/Swagger API file was not found");
     } else {
         dest_arr.forEach(function(curr_elem) {
             var pa = curr_elem.globalName;
@@ -308,8 +314,8 @@ function updatePage(dest_arr) {
             if ( PA_list.includes(pa) ) {
                 var new_src = curr_elem.source; // new source wrt to the data in the file vs. already on the page.
                 var new_client = normalizeClientString(curr_elem.client);                
-                var src_span = document.querySelector("td[id = '" + pa + "'] span[class*='src' i]");
-                var client_span = document.querySelector("td[id = '" + pa + "'] span[id='client']");
+                var src_span = document.querySelector("td[id='" + pa + "'] span[class*='src' i]");
+                var client_span = document.querySelector("td[id='" + pa + "'] span[id='client']");
                 var old_src = src_span.innerText;
                 //var valid_img = document.createElement('img');
                 //console.log(pa + " -- NEW SRC: " + new_src);
