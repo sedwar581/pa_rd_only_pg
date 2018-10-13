@@ -25,6 +25,18 @@ td {
     width: 20vw;
 }
 
+ul {
+    list-style-type: none;
+    padding-left: 0em;
+    display: inline-block;
+}
+
+ul.SDOut {
+    list-style-type: none;
+    padding-left: 2.8em;
+    display: inline-block;
+}
+
 #client {
     font-size: 1.2em;
     font-family: "Oswald";
