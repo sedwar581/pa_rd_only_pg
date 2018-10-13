@@ -317,21 +317,20 @@ function updatePage(dest_arr) {
                 var src_span = document.querySelector("td[id='" + pa + "'] span[class*='src' i]");
                 var client_span = document.querySelector("td[id='" + pa + "'] span[id='client']");
                 var old_src = src_span.innerText;
-                //var valid_img = document.createElement('img');
-                //console.log(pa + " -- NEW SRC: " + new_src);
-                //console.log("         OLD_SRC: " + old_src);
                 
                 if ( (new_src.slice(0, 2) == "TS" || new_src.slice(0, 2) == "BK") && ( new_src != old_src ) ) {
+                    curr_elem.timeOf_SrcChange = null;
                     animateNewSrc(pa, 0.3);
                     setTimeout(function () {
                         src_span.innerHTML = new_src;
                         client_span.innerHTML = "---";
-                        //valid_img.setAttribute('src', "/graphics/VALID_TS");
-                        //valid_img.setAttribute('class', "valid_loop")
-                        //src_span.parentElement.appendChild(valid_img);
                         deactivatePAPanel(pa);
                     }, 300);
                 } else if ( new_src != old_src ) {
+                    var current_time = Date.now();
+                    curr_elem.timeOf_SrcChange = current_time;
+                    console.log(curr_elem);
+                    console.log(pa + ": SOURCE CHANGED TO: " + new_src + " AT: " + (new Date(Date.now())));
                     animateNewSrc(pa, 1);
                     setTimeout(function () {
                         src_span.innerHTML = new_src;
@@ -342,4 +341,5 @@ function updatePage(dest_arr) {
             }
         });
     }
+    console.log(dest_arr);
 }
