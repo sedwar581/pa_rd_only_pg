@@ -33,7 +33,7 @@ ul {
 
 ul.SDOut {
     list-style-type: none;
-    padding-left: 2.8em;
+    padding-left: 2.5em;
     display: inline-block;
 }
 
@@ -41,7 +41,7 @@ ul.SDOut {
     font-size: 1.2em;
     font-family: "Oswald";
     font-weight: bold;
-    color: rgba(99, 93, 93, 0.997);
+    color: rgba(253, 253, 253, 0.997);
     margin-left: 0.3em;
     margin-right: 0.1em;
 }
@@ -60,7 +60,14 @@ ul.SDOut {
 }
 
 .iocTitle {
-    font-size: 0.8em;
+    font-size: 1.0em;
+}
+
+.paIO {
+    font-family: "Raleway";
+    font-size: 0.7vw;
+    font-weight: 600;
+    color: rgba(200, 200, 200, 0.99);
 }
 
 .paNum {
@@ -77,13 +84,6 @@ ul.SDOut {
     font-size: 4.5vw;
     font-weight: bold;
     color: rgba(123, 128, 120, 1); 
-}
-
-.paIO {
-    font-family: "Raleway";
-    font-size: 0.7vw;
-    font-weight: 600;
-    color: rgba(200, 200, 200, 0.99);
 }
 
 .src {
