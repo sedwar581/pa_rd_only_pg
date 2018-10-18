@@ -199,14 +199,15 @@ function getNewData() {
                         return ( pa_str == qfile_elem.globalName );
                     });
                     if (papg_match != undefined) { // in case the PA in the PA_list is not on the PA page.
-                        trimmed_PA_obj_list.push({globalName:pa_str, source:qfile_match.source.globalName, client:( papg_match.client == null ) ? "---" : papg_match.client});
+                        var new_source = qfile_match.source.globalName;
+                        trimmed_PA_obj_list.push({globalName:pa_str, source:new_source, client:( papg_match.client == null || (new_source.slice(0,2) == 'TS' || new_source.slice(0,2) == 'BK') ) ? "---" : papg_match.client});
                     } else {
                         trimmed_PA_obj_list.push({globalName:pa_str, source:qfile_match.source.globalName, client:"---"});
                     }
                 });
                 //console.log(pa_pg_response);
                 //console.log(file_contents_arr);
-                //console.log(trimmed_PA_obj_list);
+                console.log(trimmed_PA_obj_list);
                 updatePage(trimmed_PA_obj_list);
             });
             new_pa_pg_req.open('GET', pa_pg_url);
