@@ -205,7 +205,7 @@ function getNewData() {
                 });
                 //console.log(pa_pg_response);
                 //console.log(file_contents_arr);
-                console.log(trimmed_PA_obj_list);
+                //console.log(trimmed_PA_obj_list);
                 updatePage(trimmed_PA_obj_list);
             });
             new_pa_pg_req.open('GET', pa_pg_url);
@@ -309,7 +309,7 @@ function refreshData() {
 
 
 function reloadPage() {
-    setInterval(function() {
+    setTimeout(function() {
         window.location.reload(true);
         console.log("Page reloaded on: " + new Date(Date.now()));
     }, reload_page_delay);
