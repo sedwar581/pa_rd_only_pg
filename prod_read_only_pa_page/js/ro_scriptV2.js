@@ -78,8 +78,9 @@ function drawTableElements() {
     // Initialize variables
     var num_cells_per_row = 5;
     var num_tab_rows = Math.ceil((PA_list.length / num_cells_per_row));
-    var table = document.getElementById("pa_table"); 
-
+    var table = document.getElementById("pa_table");
+    
+    console.log("Page loaded on: " + new Date(Date.now()) + "\n\n");
     for (var row_ct = 0; row_ct < num_tab_rows; row_ct++) {
         var PA_sub_arr = null;
         // this if-block was added to draw a table of 3 rows of 4 cells and one row of 5 cells; PAs 42 - 46.
@@ -311,7 +312,6 @@ function refreshData() {
 function reloadPage() {
     setTimeout(function() {
         window.location.reload(true);
-        console.log("Page reloaded on: " + new Date(Date.now()));
     }, reload_page_delay);
 }
 
