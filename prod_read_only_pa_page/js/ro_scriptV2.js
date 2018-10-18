@@ -205,7 +205,7 @@ function getNewData() {
                 });
                 //console.log(pa_pg_response);
                 //console.log(file_contents_arr);
-                //console.log(trimmed_PA_obj_list);
+                console.log(trimmed_PA_obj_list);
                 updatePage(trimmed_PA_obj_list);
             });
             new_pa_pg_req.open('GET', pa_pg_url);
@@ -243,7 +243,7 @@ function normalizeClientString (inc_str) {
         new_str = 'F-CTRL';
     } else if ( min_client.startsWith('g') ) {
         new_str = 'G-CTRL';
-    } else if ( min_client.startsWith('mex') || min_client.startsWith('hc') || min_client.startsWith('hx') || min_client.startsWith('hd') || min_client.startsWith('h') || min_client.includes('cnne') || min_client.includes('esp') ) {
+    } else if ( min_client == 'h' || min_client.startsWith('mex') || min_client.startsWith('hc') || min_client.startsWith('hx') || min_client.startsWith('hd') || min_client.startsWith('h-') || min_client.startsWith('h ') || min_client.includes('cnne') || min_client.includes('esp') ) {
         new_str = 'H-CTRL';
     } else if ( min_client.startsWith('ic') || min_client.startsWith('id') ) {
         new_str = 'I-CTRL';
@@ -331,34 +331,29 @@ function updatePage(dest_arr) {
     } else {
         dest_arr.forEach(function(curr_elem) {
             var pa = curr_elem.globalName;
-            
-            if ( PA_list.includes(pa) ) {
-                var new_src = curr_elem.source; // new source wrt to the data in the file vs. already on the page.
-                var new_client = normalizeClientString(curr_elem.client);                
-                var src_span = document.querySelector("td[id='" + pa + "'] span[class*='src' i]");
-                var client_span = document.querySelector("td[id='" + pa + "'] span[id='client']");
-                var old_src = src_span.innerText;
-                //var valid_img = document.createElement('img');
-                //console.log(pa + " -- NEW SRC: " + new_src);
-                //console.log("         OLD_SRC: " + old_src);
+            var new_src = curr_elem.source; // new source wrt to the data in the file vs. already on the page.
+            var new_client = normalizeClientString(curr_elem.client);                
+            var src_span = document.querySelector("td[id='" + pa + "'] span[class*='src' i]");
+            var client_span = document.querySelector("td[id='" + pa + "'] span[id='client']");
+            var old_src = src_span.innerText;
                 
-                if ( (new_src.slice(0, 2) == "TS" || new_src.slice(0, 2) == "BK") && ( new_src != old_src ) ) {
-                    animateNewSrc(pa, 0.3);
-                    setTimeout(function () {
-                        src_span.innerHTML = new_src;
-                        client_span.innerHTML = "---";
-                        //valid_img.setAttribute('src', "/graphics/VALID_TS");
-                        //valid_img.setAttribute('class', "valid_loop")
-                        //src_span.parentElement.appendChild(valid_img);
-                        deactivatePAPanel(pa);
-                    }, 300);
-                } else if ( new_src != old_src ) {
+            if ( (new_src.slice(0, 2) == "TS" || new_src.slice(0, 2) == "BK") && ( new_src != old_src ) ) {
+                animateNewSrc(pa, 0.3);
+                setTimeout(function () {
+                    src_span.innerHTML = new_src;
+                    client_span.innerHTML = "---";
+                    deactivatePAPanel(pa);
+                }, 300);
+            } else if ( new_src != old_src || client_span.innerHTML != new_client ) {
+                if ( new_src != old_src ) {
                     animateNewSrc(pa, 1);
                     setTimeout(function () {
                         src_span.innerHTML = new_src;
                         client_span.innerHTML = new_client;
                         activatePAPanel(pa);
                     }, 1000);
+                } else if ( client_span.innerHTML != new_client ) {
+                    client_span.innerHTML = new_client;
                 }
             }
         });

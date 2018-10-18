@@ -11,11 +11,14 @@
 var express = require('express');
 var app = express();
 var port = 4353;
+var index_path = "/DEV-PAPG-v2";
 
-app.get('/DEV-PAPG-v2', function(req, res) {
+app.get(index_path, function(req, res) {
     res.type('html');
-    res.sendFile('/html/rd_only_pa_pgV2.html', {root: __dirname + '/..'});
+    res.sendFile('/html/rd_only_pa_pgV2.html', {root: __dirname + '/../public'});
 });
+
+app.use(express.static(__dirname + '/../public'));
 
 app.get('/style.css', function(req, res) {
     res.type('text/css');  
@@ -42,5 +45,5 @@ app.get('/pa_data', function(req, res) {
 });
 
 app.listen(port, function() {
-    console.log("My Node.js server is listening for requests for the PA READ-ONLY PAGE on port: " + port);
+    console.log("My Node.js server is listening for requests for the DEV PA READ-ONLY PAGE on port: " + port + " at path: " + index_path);
 });
