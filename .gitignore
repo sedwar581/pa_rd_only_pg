@@ -1,6 +1,7 @@
-node_modules
-.DS_Store
 ._.DS_Store
+.DS_Store
+.env
 nohup.out
+node_modules
 quartz_res.txt
 read_only_pa_page_dev/

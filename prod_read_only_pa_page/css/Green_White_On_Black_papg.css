@@ -19,7 +19,7 @@ td {
     background-color: rgba(0, 0, 0, 0.997);
     border: 0.25em solid rgba(54, 51, 55, 0.997);
     padding-top: 0.0em;
-    padding-bottom: 0.6em;
+    padding-bottom: 0.2em;
     padding-left: 0.3em;
     padding-right: 0.3em;
     width: 20vw;
@@ -33,17 +33,17 @@ ul {
 
 ul.SDOut {
     list-style-type: none;
-    padding-left: 2.5em;
+    padding-left: 2.2em;
     display: inline-block;
 }
 
 #client {
-    font-size: 1.2em;
+    font-size: 2.9em;
     font-family: "Oswald";
     font-weight: bold;
     color: rgba(253, 253, 253, 0.997);
-    margin-left: 0.3em;
-    margin-right: 0.1em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
 }
 
 #mainDiv {
@@ -59,8 +59,12 @@ ul.SDOut {
     margin-right: 0.1em;
 }
 
-.iocTitle {
-    font-size: 1.0em;
+.hdsdTitle {
+    font-size: 1.4em;
+}
+
+.clientSRCp {
+    text-align: center;
 }
 
 .paIO {

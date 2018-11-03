@@ -1,0 +1,47 @@
+<!------------------------------------------------
+  - Processing Amplifier (PA) Read-Only Page
+  - For use in control rooms of the CNN networks.
+  - Author: Steven Edwards
+  - Page Started: September 2018
+------------------------------------------------->
+
+<html>
+  <head>
+    <title>DEV v2 PA Dashboard</title>
+    <!-- Compiled and minified Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts API -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald|Raleway:400,800,900|Exo|Kanit|Maven Pro|Share|Roboto Condensed">
+    <!-- CSS by Steven Edwards -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+  </head>
+  <body onload = 'JavaScript:drawTableElements();'>
+    <div id="mainDiv">
+      <table id="patable">
+        <tbody id="pa_table">
+        </tbody>
+      </table>
+    </div>
+    <footer>
+      <div style="text-align: center; color: white;">
+        &copy;       
+        <span style="font-family: Kanit">Terry Strickland</span>
+        <span style="font-family: Kanit"> / Steven Edwards 2018</span>        
+      </div>
+  </footer>
+  </body>
+  <script>
+        //Conditional comments to get Ops Engineers to use this only in Chrome
+        //User agent from the browser is grabbed and tested to see if Chrome is in the string, and if it is not, display a JS alert and redirect to Chrome site
+        var agent = navigator.userAgent;
+        var chrome = agent.indexOf("Chrome");
+        var firefox = agent.indexOf("Firefox");
+        var added1 = (chrome + firefox);
+    
+        if ( added1 === -2 ) {
+            alert("This PA page was designed to work with the Chrome | Firefox Browsers. Please close this page and open it in Chrome | Firefox.");
+            location.href = "http://www.google.com/";
+        }
+  </script>
+  <script type="application/javascript" src = "/ro_scriptV2.js"></script>
+</html>
