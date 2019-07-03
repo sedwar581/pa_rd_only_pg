@@ -183,9 +183,6 @@ function getNewData() {
                          If the PA page lists 'ES' as the source for a PA, then 'reset/re-enter' the 
                          source in the PA on the router panel.  
                          *************************************************************************** */
-                        //if ( qfile_match.source == null ) {
-                        //    qfile_match.source = {"globalName":"ES"}
-                        //}
                         if ( qfile_match.source == null ) {
                             console.log(qfile_match);
                             qfile_match.source = {"globalName":"ES"};
@@ -193,6 +190,7 @@ function getNewData() {
                         var new_source = qfile_match.source.globalName;
                         trimmed_PA_obj_list.push({globalName:pa_str, source:new_source, client:( papg_match.client == null || ( new_source.slice(0,2) == 'ES' || new_source.slice(0,2) == 'TS' || new_source.slice(0,2) == 'BK' ) ) ? "- - - -" : papg_match.client});
                     } else {
+                        console.log(qfile_match);
                         trimmed_PA_obj_list.push({globalName:pa_str, source:qfile_match.source.globalName, client:"- - - -"});
                     }
                 });
@@ -256,7 +254,7 @@ function normalizeClientString (inc_str) {
         new_str = 'LA';
     } else if ( min_client.includes('domesticnewsroom') || min_client.includes('domnewsroom') || min_client.includes('nesro') ) {
         new_str = 'DOM. NEWSRM';
-    } else if ( min_client.includes('intlnewsroom') || min_client.includes('cnninewsroom') || min_client.startsWith('ins') ) {
+    } else if ( min_client.includes('intlnewsroom') || min_client.includes('cnninewsroom') || min_client.startsWith('ins')) {
         new_str = 'INTL. NEWSRM';
     } else if ( min_client.includes('test') || min_client.includes('bts') || min_client.includes('eng') || min_client.includes('engineering') ) {
         new_str = 'BTS ENG.';
@@ -276,7 +274,7 @@ function normalizeClientString (inc_str) {
         new_str = 'NY CTRL-71';
     } else if ( min_client.includes('72') || min_client.includes('ny72') ) {
         new_str = 'NY CTRL-72';
-    } else if ( min_client.includes('ntm') ) {
+    } else if ( min_client.startsWith('ntm') ) {
         new_str = 'HY-TPM';
     } else if ( min_client.includes('nat') ) {
         new_str = 'HY-A-CTRL';
@@ -339,7 +337,7 @@ function updatePage(dest_arr) {
             var client_span = document.querySelector("td[id='" + pa + "'] span[id='client']");
             var old_src = src_span.innerText;
                 
-            if ( (new_src.slice(0, 2) == "TS" || new_src.slice(0, 2) == "BK" || new_src.slice(0, 2) == "ES") && ( new_src != old_src ) ) {
+            if ( ( new_src.slice(0, 2) == "TS" || new_src.slice(0, 2) == "BK" || new_src.slice(0, 2) == "ES" ) && ( new_src != old_src ) ) {
                 animateNewSrc(pa, 0.3);
                 setTimeout(function () {
                     src_span.innerHTML = new_src;

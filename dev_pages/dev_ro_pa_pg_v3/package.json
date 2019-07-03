@@ -1,0 +1,29 @@
+{
+  "name": "pa-dashboard",
+  "version": "1.0.0",
+  "description": "A dashboard which displays the current PA (Processing Amplifier) assignment status ",
+  "main": "js/appV2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sedwar581/pa_rd_only_pg.git"
+  },
+  "keywords": [
+    "PA",
+    "Proc",
+    "Amp"
+  ],
+  "author": "Steven Edwards / Terry Strickland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sedwar581/pa_rd_only_pg/issues"
+  },
+  "homepage": "https://github.com/sedwar581/pa_rd_only_pg#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "mongoose": "^5.3.16",
+    "shelljs": "^0.8.3"
+  }
+}

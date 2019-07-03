@@ -33,7 +33,8 @@ app.get('/ro_script.js', function(req, res) {
 
 app.get('/pa_data', function(req, res) {
     res.type('text/plain');
-    res.sendFile('/data/quartz_res.txt', {root: __dirname + '/..'});
+    res.sendFile('/data/quartz_res.json', {root: __dirname + '/..'});
+    //res.sendFile('/data/quartz_res_nulls.json', {root: __dirname + '/..'});
 });
 
 app.listen(port, function() {
