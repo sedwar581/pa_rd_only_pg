@@ -4,4 +4,5 @@
 nohup.out
 node_modules
 quartz_res.txt
+quartz_res.json
 read_only_pa_page_dev/
