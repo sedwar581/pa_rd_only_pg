@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/sedwar581/pa_rd_only_pg#readme",
   "dependencies": {
-    "dotenv": "^6.1.0"
+    "dotenv": "^6.1.0",
+    "shell-exec": "^1.0.2"
   }
 }

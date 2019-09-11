@@ -9,6 +9,8 @@
 
 // Initialize variables
 var express = require('express');
+const shellX = require('shell-exec');
+const {exec} = require('child_process'); // REQUIRED!!!! September 11 2019
 var app = express();
 var port = 4302;
 
@@ -40,3 +42,29 @@ app.get('/pa_data', function(req, res) {
 app.listen(port, function() {
     console.log("My Node.js server is listening for requests for the PA READ-ONLY PAGE on port: " + port);
 });
+
+
+/* 
+    for writing JSON file for the 'PA dashboard'
+
+*/
+setInterval(function() {
+    console.log(`running: getPAsCurl() from Steven's app.js`)
+    getPAsCurl();
+}, 3000) // 3 seconds
+
+
+/* 
+    using Node 'exec' to run cURL on linux
+*/
+let getPAsCurl = function() {
+
+    exec(` curl -X GET --header 'Accept: application/json' --header 'Authorization: Basic Y25uaWNlbnRyYWw6Y25uaXRhcGU='  'http://quartz-prod2.turner.com/a/destinations' -o "/var/www/html/node/udemy/dev_folder/edwards/pa_dashboard/prod_read_only_pa_page/data/quartz_res.json" `
+        , function(err, stdout, stderror) {
+            if(err) {
+                console.log(err);
+            }
+
+            console.log(stdout);
+        });
+}
