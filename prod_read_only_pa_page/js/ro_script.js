@@ -8,7 +8,8 @@
 *--------------------------------------------------*/
 
 var add_space_regEx = /\B(?=\d)/;
-var data_polling_interval = 65000;
+// var data_polling_interval = 65000;
+var data_polling_interval = 3000;
 var reload_page_delay = 864000000; // reload the webpage every 10 days.
 var PA_list = ["PA 1", "PA 2", "PA 3", "PA 4", "PA 8", "PA 9", "PA 13", "PA 14", "PA 15", "PA 16", "PA 17", "PA 18", "PA 42", "PA 43", "PA 44", "PA 45", "PA 46"];
     
