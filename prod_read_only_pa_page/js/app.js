@@ -9,7 +9,6 @@
 
 // Initialize variables
 var express = require('express');
-const shellX = require('shell-exec');   // not required
 const {exec} = require('child_process'); // REQUIRED!!!! September 11 2019
 var app = express();
 var port = 4302;
@@ -17,7 +16,7 @@ var port = 4302;
 
 app.get('/', function(req, res) {
     res.redirect('/Read-Only-PA-Page'); // redirecting to the URL below
-})
+});
 
 app.get('/Read-Only-PA-Page', function(req, res) {
     res.type('html');
